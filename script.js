@@ -1,13 +1,12 @@
 // task 1
 console.log("task 1");
 function addParamsToRequest(params) {
-  let count = 1;
+  let count = 0;
   return function (data) {
-    count++;
     return {
       ...params,
       data,
-      count,
+      count: count++,
     };
   };
 }
@@ -26,7 +25,12 @@ const obj = {
   },
 };
 
-const func = obj.getData.call({ name: "John", age: 30 });
+obj.getData.call({ name: "John", age: 30 });
+
+const func2 = obj.getData.bind({ name: "John", age: 30 });
+
+func2();
+func2();
 //task 3
 console.log("task 3");
 const root = {
